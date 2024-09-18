@@ -11,7 +11,7 @@ pipeline {
             steps {
                 script {
                     def currentYear = new Date().format('yyyy').toInteger()
-                    def birthYear = new Date(env.FECHA_NACIMIENTO).format('yyyy').toInteger()
+                    def birthYear = FECHA_NACIMIENTO.split('-')[0].toInteger()
                     def edad = currentYear - birthYear
                     echo "La edad calculada es: ${edad}"
                     env.EDAD = edad.toString() 

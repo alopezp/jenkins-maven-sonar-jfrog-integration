@@ -1,0 +1,1 @@
+# jenkins-maven-sonar-jfrog-integration

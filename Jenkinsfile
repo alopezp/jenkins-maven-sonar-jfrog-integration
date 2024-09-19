@@ -9,13 +9,14 @@ pipeline {
     }
 
     stages {
-       stage('Clone ') {
+        stage('Clone Repository') {
             steps {
                 script {
-                    sh 'git clone ${env.REPO_URL}'
-                    dir('jenkins-maven-sonar-jfrog-integration') {
-                        sh "git checkout ${env.BRANCH_NAME}"
-                    }
+                    sh '''
+                    git clone ${REPO_URL} repo
+                    cd repo
+                    git checkout ${BRANCH_NAME}
+                    '''
                 }
             }
         }
@@ -50,7 +51,7 @@ pipeline {
         stage('Copy JAR') {
             steps {
                 script {
-                    sh "cp ${env.JAR_FILE_PATH} ${env.DESTINATION_PATH}"
+                    sh "cp repo/${JAR_FILE_PATH} ${DESTINATION_PATH}"
                 }
             }
         }

@@ -9,12 +9,10 @@ pipeline {
     }
 
     stages {
-        stage('Clone Repository') {
+        stage('Clone') {
             steps {
                 script {
                     sh '''
-                    git clone ${REPO_URL} repo
-                    cd repo
                     git checkout ${BRANCH_NAME}
                     '''
                 }

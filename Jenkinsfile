@@ -23,28 +23,36 @@ pipeline {
         stage('Clean') {
             steps {
                 script {
-                    sh 'mvn clean'
+                    dir('repo') {
+                        sh 'mvn clean'
+                    }
                 }
             }
         }
         stage('Validate') {
             steps {
                 script {
-                    sh 'mvn validate'
+                    dir('repo') {
+                        sh 'mvn validate'
+                    }
                 }
             }
         }
         stage('Test') {
             steps {
                 script {
-                    sh 'mvn test'
+                    dir('repo') {
+                        sh 'mvn test'
+                    }
                 }
             }
         }
         stage('Install') {
             steps {
                 script {
-                    sh 'mvn install'
+                    dir('repo') {
+                        sh 'mvn install'
+                    }
                 }
             }
         }

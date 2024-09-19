@@ -3,7 +3,7 @@ pipeline {
 
     environment {
         JAR_FILE_PATH = 'target/*.jar'
-        DESTINATION_PATH = '/Users/adrian/CursoDevOps/'
+        DESTINATION_PATH = '/Users/adrian/Documents/'
         REPO_URL = 'https://github.com/alopezp/jenkins-maven-sonar-jfrog-integration.git'
         BRANCH_NAME = 'feature/dummy-app'
     }

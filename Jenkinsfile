@@ -23,7 +23,7 @@ pipeline {
         stage('Información del Usuario (Martes)') {
             when {
                 expression { 
-                    return java.time.LocalDate.now().dayOfWeek == java.time.DayOfWeek.TUESDAY
+                    return java.time.LocalDate.now().dayOfWeek == java.time.DayOfWeek.FRIDAY
                 }
             }
             steps {

@@ -27,8 +27,15 @@ pipeline {
                 }
             }
             steps {
-                echo "Usuario que ejecutó: ${env.BUILD_USER}"
-                echo "Fecha de ejecución: ${java.time.LocalDateTime.now()}"
+                script {
+                    def userCause = currentBuild.getBuildCauses('hudson.model.Cause$UserIdCause')[0]?.userId
+                    if (userCause) {
+                        echo "Usuario: ${userCause}"
+                    } else {
+                        echo "No se ha podido obtener el usuario."
+                    }
+                }
+                echo "Fecha: ${java.time.LocalDateTime.now()}"
             }
         }
 

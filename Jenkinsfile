@@ -104,13 +104,6 @@ pipeline {
       }
     }
 
-    def escribirResultado(texto) {
-      script {
-        def resultado = "${texto}\n"
-        writeFile file: "${env.DESTINATION_PATH}/${env.OUT_FILE_NAME}", text: resultado, append: true
-      }
-    }
-
     post {
       success {
         echo 'Pipeline ejecutado correctamente.'
@@ -121,5 +114,13 @@ pipeline {
       failure {
         echo 'ERROR: El pipeline contiene errores.'
       }
+    }
+    script {
+        def escribirResultado(texto) {
+          script {
+            def resultado = "${texto}\n"
+            writeFile file: "${env.DESTINATION_PATH}/${env.OUT_FILE_NAME}", text: resultado, append: true
+          }
+        }
     }
 }

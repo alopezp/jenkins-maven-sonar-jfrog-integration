@@ -110,14 +110,13 @@ pipeline {
           expression { return java.time.LocalDate.now().dayOfWeek == java.time.DayOfWeek.MONDAY }
         }
         steps {
-          dir('proyecto-maven') {
-              script {
-                  sh '''
-                  git checkout feature/dummy-app
-                  ls -lta
-                  mvn clean install
-                  '''
-              }
+            script {
+                sh '''
+                git checkout feature/dummy-app
+                ls -lta
+                mvn clean install
+                '''
+            }
           }
         }
       }

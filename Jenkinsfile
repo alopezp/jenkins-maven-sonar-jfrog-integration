@@ -34,9 +34,15 @@ pipeline {
         }
         steps {
           script {
-            def calcularPoblacionFinal = { valor -> return valor.toFloat() * 0.80 }
+            def escribirResultado = { texto ->
+              def resultado = "${texto}\n"
+              writeFile file: "${env.DESTINATION_PATH}/${env.OUT_FILE_NAME}", text: resultado, append: true
+            }
+            
+            def calcularPoblacionFinal = { valor -> valor.toFloat() * 0.80 }
             def poblacionFinal = calcularPoblacionFinal(env.LINE_0)
             echo "Población Final: ${poblacionFinal}"
+            escribirResultado("Población Final: ${poblacionFinal}")
           }
         }
       }
@@ -47,10 +53,15 @@ pipeline {
         }
         steps {
           script {
-            def sumar = { a, b -> return a.toFloat() + b.toFloat() }
-            def restar = { a, b -> return a.toFloat() - b.toFloat() }
-            def multiplicar = { a, b -> return a.toFloat() * b.toFloat() }
-            def dividir = { a, b -> return b.toFloat() != 0 && a.toFloat() != 0 ? a.toFloat() / b.toFloat() : "Error, división por cero" }
+            def escribirResultado = { texto ->
+              def resultado = "${texto}\n"
+              writeFile file: "${env.DESTINATION_PATH}/${env.OUT_FILE_NAME}", text: resultado, append: true
+            }
+            
+            def sumar = { a, b -> a.toFloat() + b.toFloat() }
+            def restar = { a, b -> a.toFloat() - b.toFloat() }
+            def multiplicar = { a, b -> a.toFloat() * b.toFloat() }
+            def dividir = { a, b -> b.toFloat() != 0 && a.toFloat() != 0 ? a.toFloat() / b.toFloat() : "Error, división por cero" }
 
             def suma = sumar(env.LINE_1, env.LINE_2)
             def resta = restar(env.LINE_1, env.LINE_2)
@@ -69,7 +80,12 @@ pipeline {
         }
         steps {
           script {
-            def convertirFtoC = { f -> return (f.toFloat() - 32) * 5 / 9 }
+            def escribirResultado = { texto ->
+              def resultado = "${texto}\n"
+              writeFile file: "${env.DESTINATION_PATH}/${env.OUT_FILE_NAME}", text: resultado, append: true
+            }
+            
+            def convertirFtoC = { f -> (f.toFloat() - 32) * 5 / 9 }
             def celsius = convertirFtoC(env.LINE_3)
             echo "Temperatura en Celsius: ${celsius}"
             escribirResultado("Temperatura en Celsius: ${celsius}")
@@ -82,8 +98,10 @@ pipeline {
           expression { return java.time.LocalDate.now().dayOfWeek == java.time.DayOfWeek.MONDAY }
         }
         steps {
-          def user = currentBuild.getBuildCauses('hudson.model.Cause$UserIdCause')[0]?.userId
-          echo "El pipeline fue ejecutado por: ${user ?: 'Usuario desconocido'}"
+          script {
+            def user = currentBuild.getBuildCauses('hudson.model.Cause$UserIdCause')[0]?.userId
+            echo "El pipeline fue ejecutado por: ${user ?: 'Usuario desconocido'}" 
+          }
         }
       }
       
@@ -98,7 +116,7 @@ pipeline {
               git checkout feature/dummy-app
               mvn clean install
               '''
-            }                    
+            }
           }
         }
       }
@@ -114,13 +132,5 @@ pipeline {
       failure {
         echo 'ERROR: El pipeline contiene errores.'
       }
-    }
-    script {
-        def escribirResultado(texto) {
-          script {
-            def resultado = "${texto}\n"
-            writeFile file: "${env.DESTINATION_PATH}/${env.OUT_FILE_NAME}", text: resultado, append: true
-          }
-        }
     }
 }

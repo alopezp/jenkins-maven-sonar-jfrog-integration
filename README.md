@@ -1,9 +1,19 @@
 # Examen final
 
-# Examen final
+### RESPUESTAS
+1 - a
+2 - a
+3 - a
+4 - a
+5 - a
+6 - a
+7 - a
+8 - a
+9 - a
+10 - a
 
-                                                                                                                  EXAMEN JENKINS-INDRA
-PREGUNTAS
+                                                                                                                  
+### PREGUNTAS
 1. En GitHub, ¿Qué es una rama?
   a) Las ramas de Git son un puntero eficaz para las instantáneas de tus cambios. Cuando quieres añadir una nueva función o solucionar un error, independientemente de su tamaño, generas una nueva rama para alojar estos cambios.
   b) Las ramas son programas que conviven en Github

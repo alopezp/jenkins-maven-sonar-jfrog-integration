@@ -36,7 +36,7 @@ pipeline {
           script {
             def escribirResultado = { texto ->
               def resultado = "${texto}\n"
-              writeFile file: "${env.DESTINATION_PATH}/${env.OUT_FILE_NAME}", text: resultado, append: true
+              writeFile file: "${env.DESTINATION_PATH}/${env.OUT_FILE_NAME}", text: resultado
             }
             
             def calcularPoblacionFinal = { valor -> valor.toFloat() * 0.80 }
@@ -55,7 +55,7 @@ pipeline {
           script {
             def escribirResultado = { texto ->
               def resultado = "${texto}\n"
-              writeFile file: "${env.DESTINATION_PATH}/${env.OUT_FILE_NAME}", text: resultado, append: true
+              writeFile file: "${env.DESTINATION_PATH}/${env.OUT_FILE_NAME}", text: resultado
             }
             
             def sumar = { a, b -> a.toFloat() + b.toFloat() }
@@ -82,7 +82,7 @@ pipeline {
           script {
             def escribirResultado = { texto ->
               def resultado = "${texto}\n"
-              writeFile file: "${env.DESTINATION_PATH}/${env.OUT_FILE_NAME}", text: resultado, append: true
+              writeFile file: "${env.DESTINATION_PATH}/${env.OUT_FILE_NAME}", text: resultado
             }
             
             def convertirFtoC = { f -> (f.toFloat() - 32) * 5 / 9 }

@@ -49,7 +49,7 @@ pipeline {
       
       stage('Operaciones Aritméticas (Martes)') {
         when {
-          expression { return java.time.LocalDate.now().dayOfWeek == java.time.DayOfWeek.MONDAY }
+          expression { return java.time.LocalDate.now().dayOfWeek == java.time.DayOfWeek.TUESDAY }
         }
         steps {
           script {
@@ -76,7 +76,7 @@ pipeline {
       
       stage('Convertir Grados F a C (Miércoles)') {
         when {
-          expression { return java.time.LocalDate.now().dayOfWeek == java.time.DayOfWeek.MONDAY }
+          expression { return java.time.LocalDate.now().dayOfWeek == java.time.DayOfWeek.WEDNESDAY }
         }
         steps {
           script {
@@ -95,7 +95,7 @@ pipeline {
       
       stage('Información del Usuario (Jueves)') {
         when {
-          expression { return java.time.LocalDate.now().dayOfWeek == java.time.DayOfWeek.MONDAY }
+          expression { return java.time.LocalDate.now().dayOfWeek == java.time.DayOfWeek.THURSDAY }
         }
         steps {
           script {
@@ -107,7 +107,7 @@ pipeline {
       
       stage('Proyecto Maven (Viernes)') {
         when {
-          expression { return java.time.LocalDate.now().dayOfWeek == java.time.DayOfWeek.MONDAY }
+          expression { return java.time.LocalDate.now().dayOfWeek == java.time.DayOfWeek.FRIDAY }
         }
         steps {
             script {

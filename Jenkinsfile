@@ -111,12 +111,12 @@ pipeline {
         }
         steps {
           dir('proyecto-maven') {
-            script {
-              sh '''
-              git checkout feature/dummy-app
-              mvn clean install
-              '''
-            }
+              script {
+                  sh '''
+                  git checkout feature/dummy-app
+                  mvn clean install
+                  '''
+              }
           }
         }
       }

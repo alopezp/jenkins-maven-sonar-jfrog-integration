@@ -113,8 +113,8 @@ pipeline {
           dir('proyecto-maven') {
               script {
                   sh '''
-                  ls -lta
                   git checkout feature/dummy-app
+                  ls -lta
                   mvn clean install
                   '''
               }
